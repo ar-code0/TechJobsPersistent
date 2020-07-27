@@ -2,26 +2,33 @@
 
     <h1>@ViewBag.title</h1>
 
+    <br />
+    <div class="card">
+        <h1 class="display-4 text-center card-header">Search by:</h1>
+    </div>
+    <br />
+
     <form action="/search/results" method="post">
-        <h2>Search by:</h2>
+@*        <h2>Search by:</h2>
+*@
+        <div class="form-group">
+            <p>
+                @foreach (var column in ViewBag.columns)
+                {
+                    <span>
+                        <input type="radio" name="searchType" id="@column.Key" value="@column.Key" checked="@column.Key == 'all'" />
+                        <label for="@column.Key">@column.Value</label>
+                    </span><span>&nbsp; &nbsp;</span>
+                }
 
-        <p>
-            @foreach (var column in ViewBag.columns)
-            {
-                <span>
-                    <input type="radio" name="searchType" id="@column.Key" value="@column.Key" checked="@column.Key == 'all'" />
-                    <label for="@column.Key">@column.Value</label>
-                </span>
-            }
+            </p>
 
-        </p>
+            <p>
+                <input class="form-control" placeholder="Keyword" type="text" name="searchTerm" id="searchTerm" />
+            </p>
 
-        <p>
-            <label for="searchTerm">Keyword:</label>
-            <input type="text" name="searchTerm" id="searchTerm" />
-        </p>
-
-        <input type="submit" value="Search" />
+            <input type="submit" value="Search" class="btn btn-primary"/>
+        </div>
     </form>
 
     <hr />

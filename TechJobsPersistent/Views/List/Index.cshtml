@@ -1,43 +1,40 @@
-﻿<div class="container body-content">
-    <h1>@ViewBag.title</h1>
-    <h2 class="centered">View Jobs By Category</h2>
+﻿
+<br />
+<div class="card">
+    <div class="display-4 text-center card-header">@ViewBag.title</div>
+    <div class="card-body">View Jobs By Category</div>
 </div>
-
-<table class="centeredTable">
-    <tr>
-        @foreach (var column in ViewBag.columns)
-        {
-            @if (column.Key != "all")
+<br />
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            @foreach (var column in ViewBag.columns)
             {
-                <th>@column.Value</th>
+                @if (column.Key != "all")
+                {
+                    <th>@column.Value</th>
+                }
             }
-        }
-    </tr>
+        </tr>
+    </thead>
     <tr>
         @foreach (var category in ViewBag.tableChoices)
         {
             <td>
-                <ul>
-                    @if (category == "employer")
+                @if (category == "employer")
+                {
+                    @foreach (var item in ViewBag.employers)
                     {
-                        @foreach (var item in ViewBag.employers)
-                        {
-                            <li>
-                                <a asp-controller="List" asp-action="Jobs" asp-route-column="@category" asp-route-value="@item.Name">@item.Name</a>
-                            </li>
-                        }
+                        <a asp-controller="List" asp-action="Jobs" asp-route-column="@category" asp-route-value="@item.Name">@item.Name</a>
                     }
-                    else
+                }
+                else
+                {
+                    @foreach (var item in ViewBag.skills)
                     {
-                        @foreach (var item in ViewBag.skills)
-                        {
-                            <li>
-                                <a asp-controller="List" asp-action="Jobs" asp-route-column="@category" asp-route-value="@item.Name">@item.Name</a>
-                            </li>
-                        }
+                        <a asp-controller="List" asp-action="Jobs" asp-route-column="@category" asp-route-value="@item.Name">@item.Name</a>
                     }
-
-                </ul>
+                }
             </td>
         }
     </tr>
