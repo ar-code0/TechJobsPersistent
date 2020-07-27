@@ -45,22 +45,22 @@ namespace TechJobsPersistent.Controllers
                     Name = viewModel.Name,
                     Employer = context.Employers.Find(viewModel.Id),
                 };
+                context.Jobs.Add(newJob);
+                context.SaveChanges();
 
-                foreach(string skill in selectedSkills)
+                foreach (string skill in selectedSkills)
                 {
                     JobSkill jobSkill = new JobSkill
                     {
                         JobId = newJob.Id,
-                        Job = newJob,
-                        SkillId = int.Parse(skill),
+/*                        Job = newJob,
+*/                        SkillId = int.Parse(skill),
                         Skill = context.Skills.Find(int.Parse(skill))
                     };
                     context.JobSkills.Add(jobSkill);
                 }
                 context.SaveChanges();
 
-                context.Jobs.Add(newJob);
-                context.SaveChanges();
                 return Redirect("/home");
             }
             AddJobViewModel anotherViewModel = new AddJobViewModel(context.Employers.ToList(), context.Skills.ToList());

@@ -4,7 +4,15 @@
 --Part 2
 select Name
 from employers
-where (Location = "st louis");
+where (Location = "Saint Louis");
 
 --Part 3
-
+select skills.name, skills.description
+from skills
+where skills.Id in 
+	(
+	select skills.Id
+	from Skills 
+	inner join Jobskills
+	on (Skills.Id = Jobskills.SkillId)
+	);

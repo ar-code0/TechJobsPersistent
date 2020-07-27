@@ -1,6 +1,16 @@
 ﻿
 @model TechJobsPersistent.ViewModels.AddEmployerViewModel
 
+<style>
+    .field-validation-error {
+        color: red;
+    }
+
+    .input-validation-error {
+        border: 1px solid red;
+    }
+</style>
+
 <br />
 <div class="card">
     <h1 class="display-4 text-center card-header">Add New Employer</h1>
@@ -9,14 +19,14 @@
 
 <form asp-controller="Employer" asp-action="ProcessAddEmployerForm" method="post">
     <div class="form-group">
-        <input asp-for="Name" placeholder="Employer Name" class="px-2"/>
+        <input asp-for="Name" placeholder="Employer Name" class="px-2" />
         <span asp-validation-for="Name"></span>
     </div>
     <div class="form-group">
-        <input asp-for="Location" placeholder="Employer Location" class="px-2"/>
+        <input asp-for="Location" placeholder="Employer Location" class="px-2" />
         <span asp-validation-for="Location"></span>
     </div>
-    <input type="submit" value="Submit" class="btn btn-primary"/>
+    <input type="submit" value="Submit" class="btn btn-primary" />
 </form>
 
 @*@if (!String.IsNullOrEmpty(Model.Name) && !String.IsNullOrEmpty(Model.Location))

@@ -1,19 +1,29 @@
 ﻿@model TechJobsPersistent.Models.Skill
 
-<br />
-<div class="card">
-    <h1 class="display-4 text-center card-header">Add New Skill</h1>
-</div>
-<br />
+    <style>
+        .field-validation-error {
+            color: red;
+        }
 
-<form asp-controller="Skill" asp-action="Add" method="post">
-    <div class="form-group">
-        <input asp-for="Name" placeholder="Skill Name"/>
-        <span asp-validation-for="Name"></span>
+        .input-validation-error {
+            border: 1px solid red;
+        }
+    </style>
+
+    <br />
+    <div class="card">
+        <h1 class="display-4 text-center card-header">Add New Skill</h1>
     </div>
-    <div class="form-group">
-        <input asp-for="Description" placeholder="Skill Description"/>
-        <span asp-validation-for="Description"></span>
-    </div>
-    <input class="btn btn-primary" type="submit" value="Submit" />
-</form>
+    <br />
+
+    <form asp-controller="Skill" asp-action="Add" method="post">
+        <div class="form-group">
+            <input asp-for="Name" placeholder="Skill Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Description" placeholder="Skill Description" />
+            <span asp-validation-for="Description"></span>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit" />
+    </form>

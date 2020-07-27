@@ -15,15 +15,25 @@
 }
 else
 {
-    <div>
-        <ul class="list-group">
-            @foreach (Skill skill in Model)
-            {
-                <li>
+<div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Skills</th>
+                <th width="20%"></th>
+            </tr>
+        </thead>
+        @foreach (Skill skill in Model)
+        {
+            <tr>
+                <td>
                     <a class="list-group-item list-group-item-action px-4" asp-controller="Skill" asp-action="About" asp-route-id="@skill.Id">@skill.Name</a>
+                </td>
+                <td>
                     <span><a asp-controller="Remove" asp-action="Skill" asp-route-id="@skill.Id" class="btn btn-danger btn-sm">Remove</a></span>
-                </li>
-            }
-        </ul>
-    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 }

@@ -9,8 +9,9 @@
     <br />
 
     <form action="/search/results" method="post">
-@*        <h2>Search by:</h2>
-*@
+        @*        <h2>Search by:</h2>
+
+        *@
         <div class="form-group">
             <p>
                 @foreach (var column in ViewBag.columns)
@@ -27,28 +28,63 @@
                 <input class="form-control" placeholder="Keyword" type="text" name="searchTerm" id="searchTerm" />
             </p>
 
-            <input type="submit" value="Search" class="btn btn-primary"/>
+            <input type="submit" value="Search" class="btn btn-primary" />
         </div>
     </form>
 
     <hr />
+    @*
+        @if (ViewBag.jobs != null)
+        {
+            <table>
+                @foreach (var job in ViewBag.jobs)
+                {
+                    <tr>
+                        <td>
+                            <p>ID: @job.JobId</p>
+                            <p>Name: @job.Name</p>
+                            <p>Employer: @job.EmployerName</p>
+                            <p>Location: @job.SkillText</p>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }*@
+
 
     @if (ViewBag.jobs != null)
     {
-        <table>
+
+        @if (ViewBag.jobs.Count == 0)
+        {
+            <p>** No entries **</p>
+        }
+        else if (ViewBag.jobs.Count == 1)
+        {
+            <p>** <span class="text-danger">1</span> entry **</p>
+        }
+        else
+        {
+            <p>** <span class="text-danger">@ViewBag.jobs.Count</span> entries **</p>
+        }
+    <div class="container">
+        <div class="row">
             @foreach (var job in ViewBag.jobs)
             {
-                <tr>
-                    <td>
-                        <p>ID: @job.JobId</p>
-                        <p>Name: @job.Name</p>
-                        <p>Employer: @job.EmployerName</p>
-                        <p>Location: @job.SkillText</p>
-                    </td>
-                </tr>
+
+                <div class="col-md-4 ">
+                    <div class="card border border-warning m-2">
+                        <div class="card-header bg-secondary text-light">ID: @job.JobId</div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><span class="text-info">Name:</span> @job.Name</li>
+                            <li class="list-group-item bg-light"><span class="text-info">Employer:</span> @job.EmployerName</li>
+                            <li class="list-group-item"><span class="text-info">Skills:</span> @job.SkillText</li>
+                        </ul>
+                    </div>
+                </div>
             }
-        </table>
+        </div>
+    </div>
     }
 
 
-</div>
